@@ -351,12 +351,10 @@ module.exports = function(files) {
           
           case 'gt':
             finalJson.src = json.resources[0]
-            finalJson.version = { number: 1}
+            finalJson.version = { number: 1 }
             for (var sn in json.spritemap) {
               var spriteInfo = json.spritemap[sn]
-              finalJson[sn].push({
-                startTime: spriteInfo.start * 1000, endTime: spriteInfo.end * 1000
-              })
+              finalJson[sn] = { startTime: spriteInfo.start * 1000, endTime: spriteInfo.end * 1000 })
             }
             break
             
