@@ -7,17 +7,23 @@ const glob = require('glob');
 const defaults = {
   output: 'output',
   path: '',
-  export: 'ogg,m4a,mp3,ac3',
-  format: null,
+//   export: 'ogg,m4a,mp3,ac3',
+  export: 'ogg,m4a,mp4',
+//   format: null,
+  format: 'gt',
   autoplay: null,
   loop: [],
-  silence: 0,
-  gap: 1,
+//   silence: 0,
+  silence: 0.05,
+//   gap: 1,
+  gap: 0.2,
   minlength: 0,
-  bitrate: 128,
+//   bitrate: 128,
+  bitrate: 32,
   vbr: -1,
   'vbr:vorbis': -1,
-  samplerate: 44100,
+//   samplerate: 44100,
+  samplerate: 22050,
   channels: 1,
   rawparts: '',
   ignorerounding: 0,
@@ -360,6 +366,16 @@ module.exports = function(files) {
             }
             break
           
+          case 'gt':
+            finalJson.version = { number: 1 }
+            for (var sn in json.spritemap) {
+              var spriteInfo = json.spritemap[sn]
+              var sndStart = Math.floor(spriteInfo.start * 1000) / 1000
+              var sndEnd = Math.floor(spriteInfo.end * 1000) / 1000
+              finalJson[sn] = { startTime: sndStart, endTime: sndEnd }
+            }
+            break
+            
           case 'default':
           default:
             finalJson = json
