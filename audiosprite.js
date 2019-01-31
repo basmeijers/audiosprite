@@ -350,24 +350,14 @@ module.exports = function(files) {
             break
           
           case 'gt':
-            finalJson.src = json.resources[0]
             finalJson.version = { number: 1 }
             for (var sn in json.spritemap) {
               var spriteInfo = json.spritemap[sn]
-              finalJson[sn] = { startTime: spriteInfo.start * 1000, endTime: spriteInfo.end * 1000 }
+              var sndStart = Math.floor((spriteInfo.start * 1000) * 1000) / 1000
+              var sndEnd = Math.floor((spriteInfo.end * 1000) * 1000) / 1000
+              finalJson[sn] = { startTime: sndStart, endTime: sndEnd }
             }
             break
-            
-//           case 'gt':
-//             finalJson.src = json.resources[0]
-//             finalJson.data = {audioSprite: []}
-//             for (var sn in json.spritemap) {
-//               var spriteInfo = json.spritemap[sn]
-//               finalJson.data.audioSprite.push({
-//                 id: sn, startTime: spriteInfo.start * 1000, endTime: spriteInfo.end * 1000
-//               })
-//             }
-//             break
             
           case 'default':
           default:
