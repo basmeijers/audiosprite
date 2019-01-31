@@ -359,8 +359,8 @@ module.exports = function(files) {
             finalJson.version = { number: 1 }
             for (var sn in json.spritemap) {
               var spriteInfo = json.spritemap[sn]
-              var sndStart = Math.floor((spriteInfo.start * 1000) * 1000) / 1000
-              var sndEnd = Math.floor((spriteInfo.end * 1000) * 1000) / 1000
+              var sndStart = Math.floor(spriteInfo.start * 1000) / 1000
+              var sndEnd = Math.floor(spriteInfo.end * 1000) / 1000
               finalJson[sn] = { startTime: sndStart, endTime: sndEnd }
             }
             break
