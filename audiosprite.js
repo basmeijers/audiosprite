@@ -7,7 +7,7 @@ const glob = require('glob');
 const defaults = {
   output: 'output',
   path: '',
-  export: 'ogg,m4a,mp3,ac3',
+  export: 'ogg,m4a,mp4',
   format: null,
   autoplay: null,
   loop: [],
@@ -350,7 +350,7 @@ module.exports = function(files) {
             break
 
           case 'gt':
-            finalJson.version = { number: 1 }
+            finalJson.version = { number: 2 }
             for (var sn in json.spritemap) {
               var spriteInfo = json.spritemap[sn]
               var sndStart = Math.floor(spriteInfo.start * 1000) / 1000
